@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tarifas Freelance & ROI Cloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen p-6 flex flex-col items-center justify-center">
+    <div class="max-w-2xl w-full bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700">
+        <h1 class="text-3xl font-bold text-center text-indigo-400 mb-6">Calculadora de Tarifas Freelance & ROI</h1>
+        <p class="text-slate-300 text-center mb-8">Calcula cuánto debes cobrar por tu trabajo independiente y proyecta ingresos pasivos con minería en la nube.</p>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Meta Mensual Deseada ($ USD):</label>
+                <input id="targetIncome" type="number" value="2000" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Horas Trabajables por Semana:</label>
+                <input id="weeklyHours" type="number" value="30" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1">Gastos Fijos Mensuales ($ USD):</label>
+                <input id="expenses" type="number" value="500" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+            </div>
+            
+            <button onclick="calculate()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 font-bold rounded-lg transition duration-200 mt-4">Calcular Tarifa por Hora</button>
+        </div>
+
+        <div id="result" class="hidden mt-8 p-6 bg-slate-900 rounded-xl border border-indigo-500/30 text-center">
+            <p class="text-slate-400 text-sm">Tu tarifa sugerida mínima por hora:</p>
+            <h2 id="hourlyRate" class="text-4xl font-extrabold text-emerald-400 my-2">$0.00 / hr</h2>
+            <p class="text-xs text-slate-500">Incluye 25% para contingencias e impuestos.</p>
+        </div>
+
+        <div class="mt-10 border-t border-slate-700 pt-6 text-center space-y-4">
+            <h3 class="text-lg font-semibold text-slate-200">¿Necesitas una auditoría o un bot personalizado de automatización?</h3>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="https://paypal.me/lucianobenech/5" target="_blank" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-semibold shadow transition">Consultoría Express ($5 USD)</a>
+                <a href="https://gomining.com/?ref=tCW6U" target="_blank" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white rounded-lg font-semibold shadow transition">Potenciar ingresos con GoMining</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const income = parseFloat(document.getElementById('targetIncome').value) || 0;
+            const hours = parseFloat(document.getElementById('weeklyHours').value) || 1;
+            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+            
+            const totalNeeded = (income + expenses) * 1.25;
+            const monthlyHours = hours * 4.33;
+            const rate = totalNeeded / monthlyHours;
+            
+            document.getElementById('hourlyRate').innerText = '$' + rate.toFixed(2) + ' / hr';
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
